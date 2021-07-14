@@ -1,0 +1,139 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="card card-user">
+        <div class="card-header">
+          <h3 class="card-title">Add Event</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="addEventForm">
+
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <img class="form-control" src="{{icon_pic == null ? '../../../../assets/img/default-avatar.png' : icon_pic}}" alt="thumbnail" class="img-thumbnail"
+                  style="width: 200px">
+                </div>
+                <i class="fa fa-cloud-upload"></i>&nbsp;{{icon_pic == null ? 'Upload Icon' : 'Change Icon'}}
+                <div>
+                    <input id="file-upload" type="file" class="profile_pic_file" (change)="onProfilePicture($event)"/>
+                </div>
+              </div>
+            </div><br>
+
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>Artist Name</label>
+                  <input type="text" class="form-control" placeholder="Artist Name" formControlName="ArtistName">
+                </div>
+                <!-- <mat-error *ngIf="submitted && f.name.errors" style="color: #ff0000">
+                  <mat-error *ngIf="f.name.errors.required">Service name is required</mat-error>
+                </mat-error> -->
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>Start Price</label>
+                  <input type="text" class="form-control" placeholder="Start Price" formControlName="startPrice">
+                </div>
+                <!-- <mat-error *ngIf="submitted && f.name.errors" style="color: #ff0000">
+                  <mat-error *ngIf="f.name.errors.required">Service name is required</mat-error>
+                </mat-error> -->
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>End Price</label>
+                  <input type="text" class="form-control" placeholder="End Price" formControlName="EndPrice">
+                </div>
+                <!-- <mat-error *ngIf="submitted && f.name.errors" style="color: #ff0000">
+                  <mat-error *ngIf="f.name.errors.required">Service name is required</mat-error>
+                </mat-error> -->
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>Seat Capacity</label>
+                  <input type="text" class="form-control" placeholder="Number of Seat" formControlName="SeatCapacity">
+                </div>
+                <!-- <mat-error *ngIf="submitted && f.name.errors" style="color: #ff0000">
+                  <mat-error *ngIf="f.name.errors.required">Service name is required</mat-error>
+                </mat-error> -->
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <mat-form-field  class="form-control">
+                    <mat-label>Start and End Date</mat-label>
+                    <mat-date-range-input
+                      [rangePicker]="campaignOnePicker"
+                      [comparisonStart]="addEventForm.value.StartDate"
+                      [comparisonEnd]="addEventForm.value.EndDate">
+                      <input matStartDate placeholder="Start date" formControlName="StartDate">
+                      <input matEndDate placeholder="End date" formControlName="EndDate">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 pr-1">  
+                <table class="table table-bordered" formArrayName="TimeSlot">
+                  <tr >
+                    <th colspan="2">Add Times:</th>
+                    <th width="150px"><button type="button" (click)="addTimeSlot()" class="btn btn-primary">Add More</button></th>
+                  </tr>
+                  <tr *ngFor="let timeSlot of TimeSlot().controls; let i=index" [formGroupName]="i">
+                    <td>
+                      Start Time :
+                      <ngx-timepicker-field class="form-control" [format]="24" [controlOnly]="true" formControlName="startTime"></ngx-timepicker-field>
+                    </td>
+                    <td>
+                      End Time:
+                      <ngx-timepicker-field class="form-control" [format]="24" [controlOnly]="true" formControlName="endTime"></ngx-timepicker-field>
+                    </td>
+                    <td>
+                        <button (click)="removeQuantity(i)" class="btn btn-danger">Remove</button>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+            <!-- <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>Upload Image*</label>
+                  <i class="fa fa-pencil" aria-hidden="true" (click)="uploadEl.click()"></i>
+                  <input type="file" #uploadEl class="custom-file-input" id="customFile" name="image"
+                  accept="image/x-png,image/gif,image/jpeg" (change)="onSelectedProfileImage($event)"> 
+                  <div *ngIf="imageSrc" class="">
+                    <img alt=" " class="selected-image" src="{{imageSrc}}" title=" ">
+                  </div> 
+                  <mat-error *ngIf="submitted && f.image.value == null  " style="color: #ff0000">
+                     Image is required
+                   </mat-error>
+                </div>
+              </div>
+            </div> -->
+            <div class="row">
+              <div class="update ml-auto mr-auto">
+                <button type="submit" class="btn btn-primary btn-round" (click)="submitAddEventForm()">Add Event</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,41 @@
+<div class="row">
+    <!-- <div class="col-md-1"></div> -->
+    <div class="col-md-12">
+      <div class="card card-user">
+        <div class="card-header">
+          <h5 class="card-title">Create Property category type</h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="propertyCategoryForm">
+            <div class="row">
+              <div class="col-md-8 pr-1">
+                <div class="form-group">
+                  <label>Name</label>
+                  <input type="text" class="form-control" placeholder="Property category type name" formControlName="property_category_name" >
+                  <mat-error *ngIf="submitted && propertyCategoryForm.get('property_category_name').errors || propertyCategoryForm.get('property_category_name').touched && hasError('property_category_name', 'required')" style="color: red;">
+                    Property category type name is required
+                  </mat-error>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Description</label>
+                  <textarea class="form-control textarea" formControlName="property_category_description"></textarea> 
+                  <mat-error *ngIf="submitted && propertyCategoryForm.get('property_category_description').errors || propertyCategoryForm.get('property_category_description').touched && hasError('property_category_description', 'required')" style="color: red;">Description is required</mat-error>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="update ml-auto mr-auto">
+                <button type="submit" class="btn btn-primary btn-round" (click)="submitChangePasswrdForm()">Submit</button>
+              </div>
+            </div>
+            <div class="row"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

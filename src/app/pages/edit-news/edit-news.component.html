@@ -1,0 +1,86 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="card card-user">
+        <div class="card-header">
+          <h5 class="card-title">Edit News</h5>
+        </div>
+        <div class="card-body" *ngIf="newsDetails">
+          <form [formGroup]="newsForm">
+                <div class="row">
+                    <div class="col-md-6 pr-1">
+                    <div class="form-group">
+                        <img class="form-control" src="{{icon_pic == null ? '../../../../assets/img/image-not-available.png' : icon_pic}}" alt="thumbnail" class="img-thumbnail"
+                        style="width: 200px">
+                    </div>
+                    <i class="fa fa-cloud-upload"></i>&nbsp;{{icon_pic == null ? 'Upload News Image' : 'Change News'}}
+                    <div>
+                        <input id="file-upload" type="file" class="profile_pic_file" (change)="onProfilePicture($event)"/>
+                    </div>
+                    </div>
+                </div><br>
+
+                <div class="row">
+                <div class="col-md-6 pr-1">
+                    <div class="form-group">
+                    <label>News Title</label>
+                    <input type="text" class="form-control" formControlName="news_title" >
+                    <mat-error *ngIf="submitted && newsForm.get('news_title').errors || newsForm.get('news_title').touched && hasError('news_title', 'required')" style="color: red;">
+                        News Title is required
+                    </mat-error>
+                    </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                    <div class="form-group">
+                    <label>Creator name</label>
+                    <input type="text" class="form-control" formControlName="creator_name" >
+                    <mat-error *ngIf="submitted && newsForm.get('creator_name').errors || newsForm.get('creator_name').touched && hasError('creator_name', 'required')" style="color: red;">
+                        creator name is required
+                    </mat-error>
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control" formControlName="status">
+                            <option value="true">Active</option>
+                            <option value="false">Deactive</option>
+                        </select>
+                        <!-- <mat-error *ngIf="submitted && newsForm.get('status').errors || newsForm.get('status').touched && hasError('status', 'required')" style="color: red;">status is required</mat-error> -->
+                        </div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                        <div class="form-group">
+                        <label>Publicist Date:</label>
+                        <mat-form-field  class="form-control" appearance="fill">
+                            <mat-label>Choose a date</mat-label>
+                            <input matInput [matDatepicker]="picker" (click)="picker.open()" formControlName="publicist_date">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                          </mat-form-field>
+                        <mat-error *ngIf="submitted && newsForm.get('publicist_date').errors || newsForm.get('publicist_date').touched && hasError('publicist_date', 'required')" style="color: red;">Publicist date is required</mat-error>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                        <label>Description</label>
+                        <textarea class="form-control textarea" formControlName="description"></textarea> 
+                        <mat-error *ngIf="submitted && newsForm.get('description').errors || newsForm.get('description').touched && hasError('description', 'required')" style="color: red;">Description is required</mat-error>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                <div class="update ml-auto mr-auto">
+                    <button type="submit" class="btn btn-primary btn-round" (click)="submitNewsForm()">Submit</button>
+                </div>
+                </div>
+                <div class="row"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,41 @@
+<div class="row">
+    <!-- <div class="col-md-1"></div> -->
+    <div class="col-md-12">
+      <div class="card card-user">
+        <div class="card-header">
+          <h5 class="card-title">Create Agent Type</h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="agentTypeForm">
+            <div class="row">
+              <div class="col-md-8 pr-1">
+                <div class="form-group">
+                  <label>Name</label>
+                  <input type="text" class="form-control" placeholder="Agent type" formControlName="agent_type_name" >
+                  <mat-error *ngIf="submitted && agentTypeForm.get('agent_type_name').errors || agentTypeForm.get('agent_type_name').touched && hasError('agent_type_name', 'required')" style="color: red;">
+                    Agent type is required
+                  </mat-error>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Description</label>
+                  <textarea class="form-control textarea" formControlName="agent_type_description"></textarea> 
+                  <mat-error *ngIf="submitted && agentTypeForm.get('agent_type_description').errors || agentTypeForm.get('agent_type_description').touched && hasError('agent_type_description', 'required')" style="color: red;">Description is required</mat-error>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="update ml-auto mr-auto">
+                <button type="submit" class="btn btn-primary btn-round" (click)="submitChangePasswrdForm()">Submit</button>
+              </div>
+            </div>
+            <div class="row"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

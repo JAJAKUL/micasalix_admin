@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="card card-user">
+        <div class="card-header">
+          <h3 class="card-title">Edit Agent</h3>
+        </div>
+        <div class="card-body" *ngIf="agentDetails">
+            <form [formGroup]="createAgent">
+                <div class="row">
+                <div class="col-md-6 pr-1">
+                    <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" class="form-control" placeholder="Full Name" formControlName="FullName">
+                    </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                    <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" placeholder="Email" formControlName="Email">
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 pr-1">
+                        <div class="form-group">
+                        <label>Phone</label>
+                        <input type="text" class="form-control" placeholder="Phone Number" formControlName="Phone">
+                        </div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                        <div class="form-group">
+                        <label>Agent Type</label>
+                        <select class="form-control" placeholder="Agent type" formControlName="AgentType" (change)="selectAgentType($event.target.value)">
+                            <option *ngFor="let item of agentTypeList" [value]="item._id">{{item.agent_type_name}}</option>
+                        </select>
+                        <!-- <mat-error *ngIf="submitted && agentTypeForm.get('agent_type_id').errors || agentTypeForm.get('agent_type_id').touched && hasError('agent_type_id', 'required')" style="color: red;">
+                          Agent type is required
+                        </mat-error> -->
+                        </div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                        <div class="form-group">
+                        <label>Sub Agent Type</label>
+                        <select class="form-control" placeholder="Sub Agent type" formControlName="subAgentType">
+                            <option *ngFor="let item of subAgentTypeList" [value]="item._id">{{item.sub_agent_type_name}}</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="row">
+                <div class="col-md-6 pl-1">
+                    <div class="form-group">
+                    <label>sub Agent Type</label>
+                    <input type="text" class="form-control" placeholder="Phone Number" formControlName="subAgentType">
+                    </div>
+                </div>
+                <div class="col-md-6 pr-1">
+                    <div class="form-group">
+                    <label>Agent Type</label>
+                    <input type="text" class="form-control" placeholder="Username" formControlName="AgentType">
+                    </div>
+                </div>
+                
+                </div> -->
+                <div class="row">
+                <div class="update ml-auto mr-auto">
+                    <!-- <button  [disabled]="userDetails.verification.driverVerification == 'accept'"  class="btn btn-primary btn-round" (click)="driverAcceptAndReject('accept')">Accept</button>
+                    <button  [disabled]="userDetails.verification.driverVerification == 'reject'"  class="btn btn-danger btn-round" (click)="driverAcceptAndReject('reject')">Reject</button> -->
+                    <button  class="btn btn-danger btn-round" (click)="submitForm()">Submit</button>
+                </div>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>

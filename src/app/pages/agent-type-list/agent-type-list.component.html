@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                  <div class="input-group no-border">
+                    <input type="text" class="form-control" placeholder="Search agent type by name" [(ngModel)]="search">
+                    <div *ngIf="search" class="input-group-append" (click)="getAllAgent()">
+                        <div class="input-group-text text-danger">
+                          <i class="nc-icon nc-simple-remove"></i>
+                        </div>
+                      </div>
+                    <div class="input-group-append" (click)="findAgent()">
+                      <div class="input-group-text">
+                        <i class="nc-icon nc-zoom-split"></i>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-md-6 text-right">
+                <button class="btn btn-info" (click)="addAgentType()"><i class="fa fa-plus"></i> Add Agent Type </button>  
+              </div>
+            </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th>
+                  Sl.No
+                </th>
+                <th>
+                  Name
+                </th>
+                <th>
+                 Description
+                </th>
+                <th>
+                 Status
+                </th>
+                <th class="text-center">
+                  Action
+                </th>
+              </thead>
+              <tbody *ngIf="agentTypeList">
+                <tr *ngFor="let item of agentTypeList;let i=index">
+                  <td>
+                    {{i+1}}.
+                  </td>
+                  <td>
+                    {{item.agent_type_name}}
+                  </td>
+                  <td>
+                    {{item.agent_type_description}}
+                  </td>
+                  <td>
+                    {{item.status ? "Active" : "Deactive" }}
+                  </td>
+                  <td class="text-center">
+                    <button *ngIf="item.status == false" title="Customer Details" (click)="activeAgent(item._id,true,i)"><i class="fa fa-check"></i></button>&nbsp;
+                    <button *ngIf="item.status == true" title="Customer Details" (click)="activeAgent(item._id,false,i)"><i class="fa fa-times"></i></button>&nbsp;
+                    <button  title="Edit Service" (click)="editAgentType(item._id)"><i class="fa fa-edit"></i></button>&nbsp;
+                    <!-- <button title="Delete Service" (click)="deleteAgentType(item._id)"><i class="fa fa-trash-o"></i></button> -->
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot *ngIf="agentTypeList == ''">
+                <tr class="text-center">
+                  <td colspan="6">Data Not Found...</td>
+                </tr>
+              </tfoot>
+            </table>
+            <mat-paginator  #paginator (page)="paginationChange($event)" [length]="count" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+          </div>
+        </div>     
+      </div>
+    </div>
+  </div>

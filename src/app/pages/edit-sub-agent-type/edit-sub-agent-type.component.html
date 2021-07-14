@@ -1,0 +1,52 @@
+<div class="row" *ngIf="subAgentTypeDetails">
+    <div class="col-md-12">
+      <div class="card card-user">
+        <div class="card-header">
+          <h5 class="card-title">Edit Agent Type</h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="agentTypeForm">
+            <div class="row">
+                <div class="col-md-8 pr-1">
+                    <label>Select Agent type</label>
+                    <select class="form-control" placeholder="Agent type" formControlName="agent_type_id">
+                        <option *ngFor="let item of agentTypeList" [value]="item._id">{{item.agent_type_name}}</option>
+                      </select>
+                    <mat-error *ngIf="submitted && agentTypeForm.get('agent_type_id').errors || agentTypeForm.get('agent_type_id').touched && hasError('agent_type_id', 'required')" style="color: red;">
+                      Agent type is required
+                    </mat-error>
+                  </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8 pr-1">
+                <div class="form-group">
+                  <label>Name</label>
+                  <input type="text" class="form-control" placeholder="Sub Agent type" formControlName="sub_agent_type_name" >
+                  <mat-error *ngIf="submitted && agentTypeForm.get('sub_agent_type_name').errors || agentTypeForm.get('sub_agent_type_name').touched && hasError('sub_agent_type_name', 'required')" style="color: red;">
+                    Sub Agent type is required
+                  </mat-error>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Description</label>
+                  <textarea class="form-control textarea" formControlName="sub_agent_type_description"></textarea> 
+                  <mat-error *ngIf="submitted && agentTypeForm.get('sub_agent_type_description').errors || agentTypeForm.get('sub_agent_type_description').touched && hasError('sub_agent_type_description', 'required')" style="color: red;">Description is required</mat-error>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="update ml-auto mr-auto">
+                <button type="submit" class="btn btn-primary btn-round" (click)="submitChangePasswrdForm()">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  

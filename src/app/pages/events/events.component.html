@@ -1,0 +1,100 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                  <div class="input-group no-border">
+                    <input type="text" class="form-control" placeholder="Search customer by Artist Name" [(ngModel)]="search">
+                    <div *ngIf="search" class="input-group-append" (click)="getAllUser()">
+                        <div class="input-group-text text-danger">
+                          <i class="nc-icon nc-simple-remove"></i>
+                        </div>
+                      </div>
+                    <div class="input-group-append" (click)="findUser()">
+                      <div class="input-group-text">
+                        <i class="nc-icon nc-zoom-split"></i>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-md-6 text-right">
+                <button class="btn btn-info" (click)="addEvents()"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Create Event</button>
+              </div>
+            </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th>
+                  Sl.No
+                </th>
+                <th>
+                  Image
+                </th>
+                <th>
+                  Artist Name
+                </th>
+                <th>
+                  Start Date
+                </th>
+                <th>
+                  EndDate
+                </th>
+                <th>
+                  Start Price
+                </th>
+                <th>
+                  End Price
+                </th>
+                <th>
+                  Seat Capacity
+                </th>
+                <th class="text-center">
+                  Action
+                </th>
+              </thead>
+              <tbody *ngIf="eventList">
+                <tr *ngFor="let item of eventList;let i=index">
+                  <td>
+                    {{i+1}}.
+                  </td>
+                  <td>
+                    <img class="imgClass" src="{{item.Picture}}">
+                  </td>
+                  <td>
+                    {{item.ArtistName}}
+                  </td>
+                  <td>
+                    {{item.StartDate | date:'mediumDate' }}
+                  </td>
+                  <td>
+                    {{item.EndDate | date:'mediumDate'}}
+                  </td>
+                  <td>
+                    {{item.startPrice}}
+                  </td>
+                  <td>
+                    {{item.EndPrice}}
+                  </td>
+                  <td>
+                    {{item.SeatCapacity}}
+                  </td>
+                  <td class="text-center">
+                    <button title="Customer Details" (click)="viewUser(item._id)"><i class="fa fa-eye"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot *ngIf="eventList == ''">
+                <tr class="text-center">
+                  <td colspan="6">Data Not Found...</td>
+                </tr>
+              </tfoot>
+            </table>
+            <mat-paginator  #paginator (page)="paginationChange($event)" [length]="count" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
