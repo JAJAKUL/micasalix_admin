@@ -13,13 +13,13 @@ import { BaseUrl } from '../../services/base.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted: Boolean = false;
-  
+
   constructor(
     private FB: FormBuilder,
     public webService: WebService,
     public toastr: ToastrService,
     public router: Router,
-  ) { 
+  ) {
     this.checkLogin();
     this.signInForm();
   }
@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
     this.webService.createPost({ url: BaseUrl.apiUrl("login"), body: this.loginForm.value, contentType: true }).then(res => {
       if (res["status"]) {
         console.log("res success");
+        window.location.reload();
         let userData = {...res["data"],adminLogin:true};
         this.webService.saveLocalData("adminData", userData);
         this.webService.saveLocalData("micasaluxToken", res["token"]);
