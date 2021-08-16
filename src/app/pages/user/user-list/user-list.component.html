@@ -16,7 +16,7 @@
           </div>
       </div>
       <div class="col-md-6 text-right">
-        <button class="btn btn-info" (click)="createUser()"><i class="fa fa-plus"></i> Create User </button>  
+        <button class="btn btn-info" (click)="createUser()"><i class="fa fa-plus"></i> Create User </button>
       </div>
     </div>
   <div class="table-responsive">
@@ -37,6 +37,7 @@
         <th>
           Phone No.
         </th>
+        <th>Status</th>
         <th class="text-center">
           Action
         </th>
@@ -58,13 +59,36 @@
           <td>
             {{item.Phone ? item.Phone : 'N/A'}}
           </td>
-          <td class="text-center">
+          <td>
+            {{ item.Active == true ? "Activate" : "Deactive" }}
+          </td>
+          <td>
+            <button mat-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+
+            <mat-menu #menu="matMenu">
+
+              <button mat-menu-item (click)="activeAgent(item,i)">
+                <mat-icon><span class="material-icons">visibility</span></mat-icon>
+                <span>{{ item.Active == true ? "Deactive" : "Activate" }}</span>
+              </button>
+              <button mat-menu-item (click)="editUser(item._id)">
+                <mat-icon>edit</mat-icon>
+                <span>Edit</span>
+              </button>
+              <button mat-menu-item (click)="deleteService(item._id,i)">
+                <mat-icon>delete</mat-icon>
+                <span>Delete</span>
+              </button>
+            </mat-menu>
+          </td>
+          <!-- <td class="text-center">
             <button *ngIf="item.Active == false" title="Active" (click)="activeAgent(item._id,true,i)"><i class="fa fa-check"></i></button>&nbsp;
             <button *ngIf="item.Active == true" title="Deactive" (click)="activeAgent(item._id,false,i)"><i class="fa fa-times"></i></button>&nbsp;
-            <!-- <button title="User Details" (click)="viewUser(item._id)"><i class="fa fa-eye"></i></button> -->
+            <button title="User Details" (click)="viewUser(item._id)"><i class="fa fa-eye"></i></button>
             <button  title="Edit Agent" (click)="editUser(item._id)"><i class="fa fa-edit"></i></button>&nbsp;
-            <!-- <button title="Delete Service" (click)="deleteService(item._id)"><i class="fa fa-trash-o"></i></button> -->
-          </td>
+           </td> -->
         </tr>
       </tbody>
       <tfoot *ngIf="userList == ''">

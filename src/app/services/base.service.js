@@ -1,4 +1,4 @@
-let baseUrl = "https://nodeserver.mydevfactory.com:4250";
+let baseUrl = "https://nodeserver.mydevfactory.com:3301";
 // let baseUrl = "http://localhost:4250";
 let userUrl = baseUrl + "/admin/";
 let userUrlx = baseUrl + "/user/";
@@ -53,7 +53,14 @@ const apiEnd = {
 
   createEvent: "createEvent",
   addEventImage: "addEventImage",
-  eventList: "eventList"
+  eventList: "eventList",
+  removeUser: "removeUser",
+  createSubscription: "createSubscription",
+  subscriptionList: "subscriptionList",
+  activeAndDeactiveSubscription: "activeAndDeactiveSubscription",
+  removeSubscription: "removeSubscription",
+  updateSubscription: "updateSubscription",
+
 }
 
 exports.BaseUrl = {

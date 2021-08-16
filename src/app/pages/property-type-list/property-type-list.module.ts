@@ -5,7 +5,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { PropertyTypeListRoutes } from './property-type-list.routing.module';
 import { PropertyTypeListComponent } from './property-type-list.component';
 
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   declarations: [PropertyTypeListComponent],
   imports: [
@@ -13,7 +15,10 @@ import { PropertyTypeListComponent } from './property-type-list.component';
     FormsModule,
     ReactiveFormsModule,
     PropertyTypeListRoutes,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
   ]
 })
 export class PropertyTypeListModule { }

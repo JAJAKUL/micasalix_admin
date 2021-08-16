@@ -5,7 +5,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { SubAgentTypeListRoutes } from './sub-agent-type-list.routing.module';
 import { SubAgentTypeListComponent } from './sub-agent-type-list.component';
 
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   declarations: [SubAgentTypeListComponent],
   imports: [
@@ -13,7 +15,10 @@ import { SubAgentTypeListComponent } from './sub-agent-type-list.component';
     FormsModule,
     ReactiveFormsModule,
     SubAgentTypeListRoutes,
-    MatPaginatorModule
-  ]
+    MatPaginatorModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    ]
 })
 export class SubAgentTypeListModule { }

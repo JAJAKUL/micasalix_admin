@@ -78,8 +78,29 @@ export class AgentTypeListComponent implements OnInit {
     this.router.navigate(['/agent-type-list'], { queryParams: { page: this.page, limit: this.limit } });
   }
 
-  activeAgent(id,status,index) {
-    this.webService.createGet({url: BaseUrl.apiUrl("activeAndDeactiveAgentTypeStatus")+`?status=`+status+`&Id=`+id, contentType: true }).then(res => {
+  // activeAgent(id,status,index) {
+  //   this.webService.createGet({url: BaseUrl.apiUrl("activeAndDeactiveAgentTypeStatus")+`?status=`+status+`&Id=`+id, contentType: true }).then(res => {
+  //     if (res["status"]) {
+  //       this.agentTypeList[index].status = status;
+  //       this.toastr.success(res["message"],"Success")
+  //     }else{
+  //       this.toastr.error(res["message"],"Error")
+  //     }
+  //   })
+  // }
+
+
+  activeAgent(data,index) {
+    var status: boolean
+    if(data.status){
+      status = false
+    }else{
+      status = true
+    }
+
+    console.log(data)
+    this.webService.createGet({url: BaseUrl.apiUrl("activeAndDeactiveAgentTypeStatus")+`?status=`+status+`&Id=`+data._id, contentType: true }).then(res => {
+      console.log(res)
       if (res["status"]) {
         this.agentTypeList[index].status = status;
         this.toastr.success(res["message"],"Success")

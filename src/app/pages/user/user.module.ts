@@ -10,7 +10,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 
-
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   declarations: [UserComponent, UserListComponent, UserDetailsComponent],
   imports: [
@@ -21,6 +24,10 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     MatPaginatorModule,
     CustomPipeModule,
     MatTabsModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
   ]
 })
 export class UserModule { }

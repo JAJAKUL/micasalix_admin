@@ -23,7 +23,7 @@ export class AgentListComponent implements OnInit {
     public toastr: ToastrService,
     public router: Router,
     private activatedRoute: ActivatedRoute
-    ) { 
+    ) {
       this.activatedRoute.queryParams.subscribe(params => {
         console.log(params);
         this.params = params;
@@ -52,10 +52,31 @@ export class AgentListComponent implements OnInit {
   }
 
 
-  activeAgent(id,status,index) {
-    this.webService.createGet({url: BaseUrl.apiUrl("activeAndDeactiveAgent")+`?status=`+status+`&Id=`+id, contentType: true }).then(res => {
+  activeAgent(data,index) {
+    var status: boolean
+    if(data.Active){
+      status = false
+    }else{
+      status = true
+    }
+
+    console.log(data)
+    this.webService.createGet({url: BaseUrl.apiUrl("activeAndDeactiveAgent")+`?status=`+status+`&Id=`+data._id, contentType: true }).then(res => {
+      console.log(res)
       if (res["status"]) {
         this.userList[index].Active = status;
+        this.toastr.success(res["message"],"Success")
+      }else{
+        this.toastr.error(res["message"],"Error")
+      }
+    })
+  }
+
+  deleteService(id,index) {
+    console.log("id==",id);
+    this.webService.createGet({url: BaseUrl.apiUrl("removeUser")+`?Id=`+id, contentType: true }).then(res => {
+      if (res["status"]) {
+        this.userList.splice(index, 1);
         this.toastr.success(res["message"],"Success")
       }else{
         this.toastr.error(res["message"],"Error")

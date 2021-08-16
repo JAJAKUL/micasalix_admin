@@ -32,7 +32,8 @@ const routes: Routes = [
    { path: 'create-news', loadChildren:() => import('../../pages/create-news/create-news.module').then(m => m.CreateNewsModule),canActivate: [AuthGuard]},
    { path: 'edit-news/:id', loadChildren:() => import('../../pages/edit-news/edit-news.module').then(m => m.EditNewsModule),canActivate: [AuthGuard]},
 
-   { path: 'event-list', loadChildren: () => import('../../pages/events/event.module').then(m => m.EventsModule) ,canActivate: [AuthGuard]}
+   { path: 'event-list', loadChildren: () => import('../../pages/events/event.module').then(m => m.EventsModule) ,canActivate: [AuthGuard]},
+   { path: 'subscription', loadChildren: () => import('../../pages/subscription/subscription.module').then(m => m.SubscriptionModule) ,canActivate: [AuthGuard]},
 ];
 
 

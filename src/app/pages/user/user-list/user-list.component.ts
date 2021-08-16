@@ -54,10 +54,49 @@ export class UserListComponent implements OnInit {
     this.router.navigate(['/user-list'], { queryParams: { page: this.page, limit: this.limit } });
   }
 
-  activeAgent(id,status,index) {
-    this.webService.createGet({url: BaseUrl.apiUrl("activeAndDeactiveAgent")+`?status=`+status+`&Id=`+id, contentType: true }).then(res => {
+  activeAgent(data,index) {
+    var status: boolean
+    if(data.Active){
+      status = false
+    }else{
+      status = true
+    }
+
+    console.log(data)
+    this.webService.createGet({url: BaseUrl.apiUrl("activeAndDeactiveAgent")+`?status=`+status+`&Id=`+data._id, contentType: true }).then(res => {
+      console.log(res)
       if (res["status"]) {
         this.userList[index].Active = status;
+        this.toastr.success(res["message"],"Success")
+      }else{
+        this.toastr.error(res["message"],"Error")
+      }
+    })
+  }
+
+  // deleteService(id) {
+
+
+  //   console.log(id)
+  //   this.webService.createGet({url: BaseUrl.apiUrl("removeUser")+`&Id=`+id, contentType: true }).then(res => {
+  //     console.log(res)
+  //     if (res["status"]) {
+  //       this.toastr.success(res["message"],"Success")
+  //     }else{
+  //       this.toastr.error(res["message"],"Error")
+  //     }
+  //   }).catch(err =>{
+  //     console.log(err)
+  //   })
+  // }
+
+
+
+  deleteService(id,index) {
+    console.log("id==",id);
+    this.webService.createGet({url: BaseUrl.apiUrl("removeUser")+`?Id=`+id, contentType: true }).then(res => {
+      if (res["status"]) {
+        this.userList.splice(index, 1);
         this.toastr.success(res["message"],"Success")
       }else{
         this.toastr.error(res["message"],"Error")

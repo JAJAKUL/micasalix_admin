@@ -92,8 +92,20 @@ export class NewsListComponent implements OnInit {
     this.router.navigate(['/news-list'], { queryParams: { page: this.page, limit: this.limit } });
   }
 
-  activeAndDeactiveNews(id,status,index) {
-    this.webService.createGet({url: BaseUrl.apiUrl("activeAndDeactiveNews")+`?status=`+status+`&Id=`+id, contentType: true }).then(res => {
+
+
+
+  activeAndDeactiveNews(data,index) {
+    var status: boolean
+    if(data.status){
+      status = false
+    }else{
+      status = true
+    }
+
+    console.log(data)
+    this.webService.createGet({url: BaseUrl.apiUrl("activeAndDeactiveNews")+`?status=`+status+`&Id=`+data._id, contentType: true }).then(res => {
+      console.log(res)
       if (res["status"]) {
         this.newsList[index].status = status;
         this.toastr.success(res["message"],"Success")
@@ -102,5 +114,6 @@ export class NewsListComponent implements OnInit {
       }
     })
   }
+
 
 }

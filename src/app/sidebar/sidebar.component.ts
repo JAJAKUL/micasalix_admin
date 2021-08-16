@@ -11,13 +11,14 @@ export interface RouteInfo {
 
 export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Dashboard', icon:'nc-bank', class: '', child:'' },
-    // { path: '/event-list', title: 'Events', icon:'nc-note-03', class: '', child:''}, 
+    // { path: '/event-list', title: 'Events', icon:'nc-note-03', class: '', child:''},
     { path: '/user-list', title: 'User List', icon:'nc-single-02', class: '', child: [{path:'/user-details',title:'User Details'},{ path:'/edit-user', title:'Edit User' },{path:'/create-user', title:'Create User'}] },
     { path: '/agent-list', title: 'Agent List', icon:'nc-circle-10', class: '', child: [{ path:'/edit-agent', title: 'Edit Agent'},{ path: '/create-agent', title: 'Create Agent'}] },
     { path: '/agent-type-list', title: 'Agent Type List', icon:'nc-single-copy-04', class: '', child: [{path:'/create-agent-type',title:'Create Agent Type'}, {path:'/edit-agent-type',title:'Edit Agent Type'}]},
     { path: '/property-category-list', title: 'Property Category List', icon:'nc-basket', class: '', child: [{path:'/create-property-category',title:'Create Property Category'},{path:'/edit-property-category', title:"Edit Property Category"}]},
     { path: '/sub-agent-type-list', title: 'Sub Agent Type List', icon:'nc-paper', class: '', child: [{path:'/create-sub-agent-type',title:'Create Sub Agent Type'}, {path:'/edit-sub-agent-type',title:'Edit Sub Agent Type'}]},
     { path: '/property-type-list', title: 'Property Type List', icon: 'nc-box-2', class: '', child: [{path:'/create-property-type',title:'Create Property Type'},{path:'/edit-property-type', title:"Edit Property type"}]},
+    { path: '/subscription', title: 'Subscription', icon:'nc-caps-small', class: '', child: [{ path:'/edit-subscription', title: 'Edit Subscription'},{ path: '/create-subscription', title: 'Create Subscription'}] },
     { path: '/news-list', title: 'News List', icon:'nc-caps-small', class: '', child: [{ path:'/edit-news', title: 'Edit News'},{ path: '/create-news', title: 'Create News'}] },
 
 ];

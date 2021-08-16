@@ -10,7 +10,7 @@ export class WebService {
   @Output() getLoggedInData: EventEmitter<any> = new EventEmitter();
   @Output() getLoggedOutData: EventEmitter<any> = new EventEmitter();
 
-  
+
   constructor(
     private http: HttpClient,
     private spinnerService: NgxSpinnerService
@@ -37,23 +37,23 @@ export class WebService {
 
   createPost(params) {
     if((typeof params.loading !== 'undefined'))
-    this.spinnerService.show(); 
+    this.spinnerService.show();
     return new Promise((resolve, reject) => {
         const httpOptions = {
           headers: new HttpHeaders().set("Content-Type", "application/json").set("x-access-token",this.getLocalData("micasaluxToken") || '')
         };
         return this.http.post(params.url, params.body, httpOptions).pipe().subscribe(res => {
-         if((typeof params.loading !== 'undefined')) 
+         if((typeof params.loading !== 'undefined'))
            this.spinnerService.hide()
          return resolve(res);
         }, err => {
-          if((typeof params.loading !== 'undefined')) 
+          if((typeof params.loading !== 'undefined'))
            this.spinnerService.hide()
           return reject(err ? err.json() : {});
         });
       });
     }
-  
+
     createPut(params) {
       if((typeof params.loading !== 'undefined'))
         this.spinnerService.show();
@@ -62,17 +62,17 @@ export class WebService {
           headers: new HttpHeaders().set("Content-Type", "application/json").set("x-access-token",this.getLocalData("micasaluxToken") || '')
         };
         return this.http.put(params.url, params.body, httpOptions).pipe().subscribe(res => {
-         if((typeof params.loading !== 'undefined')) 
+         if((typeof params.loading !== 'undefined'))
            this.spinnerService.hide()
          return resolve(res);
         }, err => {
-        if((typeof params.loading !== 'undefined')) 
+        if((typeof params.loading !== 'undefined'))
            this.spinnerService.hide()
         return reject(err ? err.json() : {});
         });
       });
     }
-  
+
     createGet(params) {
      if((typeof params.loading !== 'undefined'))
         this.spinnerService.show();
@@ -81,13 +81,13 @@ export class WebService {
           headers: new HttpHeaders().set("Content-Type", "application/json").set("x-access-token",this.getLocalData("micasaluxToken") || '')
         };
         this.http.get(params.url, httpOptions).pipe().subscribe(res => {
-          if((typeof params.loading !== 'undefined')) 
+          if((typeof params.loading !== 'undefined'))
            this.spinnerService.hide()
           return resolve(res);
         }, err => {
-        if((typeof params.loading !== 'undefined')) 
+        if((typeof params.loading !== 'undefined'))
           this.spinnerService.hide()
-          return reject(err ? err.json() : {});
+          return reject(err ? err : {});
         });
       });
     }

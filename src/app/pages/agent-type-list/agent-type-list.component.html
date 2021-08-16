@@ -19,7 +19,7 @@
                   </div>
               </div>
               <div class="col-md-6 text-right">
-                <button class="btn btn-info" (click)="addAgentType()"><i class="fa fa-plus"></i> Add Agent Type </button>  
+                <button class="btn btn-info" (click)="addAgentType()"><i class="fa fa-plus"></i> Add Agent Type </button>
               </div>
             </div>
           <div class="table-responsive">
@@ -55,12 +55,35 @@
                   <td>
                     {{item.status ? "Active" : "Deactive" }}
                   </td>
+
                   <td class="text-center">
-                    <button *ngIf="item.status == false" title="Customer Details" (click)="activeAgent(item._id,true,i)"><i class="fa fa-check"></i></button>&nbsp;
-                    <button *ngIf="item.status == true" title="Customer Details" (click)="activeAgent(item._id,false,i)"><i class="fa fa-times"></i></button>&nbsp;
-                    <button  title="Edit Service" (click)="editAgentType(item._id)"><i class="fa fa-edit"></i></button>&nbsp;
-                    <!-- <button title="Delete Service" (click)="deleteAgentType(item._id)"><i class="fa fa-trash-o"></i></button> -->
+                    <button mat-button [matMenuTriggerFor]="menu">
+                      <mat-icon>more_vert</mat-icon>
+                    </button>
+
+                    <mat-menu #menu="matMenu">
+
+                      <button mat-menu-item (click)="activeAgent(item,i)">
+                        <mat-icon><span class="material-icons">visibility</span></mat-icon>
+                        <span>{{ item.status == true ? "Deactived" : "Activated" }}</span>
+                      </button>
+                      <button mat-menu-item (click)="editAgentType(item._id)">
+                        <mat-icon>edit</mat-icon>
+                        <span>Edit</span>
+                      </button>
+                      <!-- <button mat-menu-item (click)="deleteAgentType(item._id,i)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Delete</span>
+                      </button> -->
+                    </mat-menu>
                   </td>
+
+                  <!-- <td class="text-center">
+                    <button *ngIf="item.status == false" title="Active" (click)="activeAgent(item._id,true,i)"><i class="fa fa-check"></i></button>&nbsp;
+                    <button *ngIf="item.status == true" title="Deactive" (click)="activeAgent(item._id,false,i)"><i class="fa fa-times"></i></button>&nbsp;
+                    <button  title="Edit Service" (click)="editAgentType(item._id)"><i class="fa fa-edit"></i></button>&nbsp;
+                    <button title="Delete Service" (click)="deleteAgentType(item._id)"><i class="fa fa-trash-o"></i></button>
+                  </td> -->
                 </tr>
               </tbody>
               <tfoot *ngIf="agentTypeList == ''">
@@ -71,7 +94,7 @@
             </table>
             <mat-paginator  #paginator (page)="paginationChange($event)" [length]="count" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
           </div>
-        </div>     
+        </div>
       </div>
     </div>
   </div>

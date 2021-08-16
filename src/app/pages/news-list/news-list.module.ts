@@ -8,7 +8,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { NewsListRoutes } from './news-list.routing.module';
 import { NewsListComponent } from './news-list.component';
 
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   declarations: [NewsListComponent],
   imports: [
@@ -19,6 +21,9 @@ import { NewsListComponent } from './news-list.component';
     MatPaginatorModule,
     CustomPipeModule,
     MatTabsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
   ]
 })
 export class NewsListModule { }

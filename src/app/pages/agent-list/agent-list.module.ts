@@ -8,7 +8,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { AgentListRoutes } from './agent-list.routing.module';
 import { AgentListComponent } from './agent-list.component';
 
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   declarations: [AgentListComponent],
   imports: [
@@ -19,6 +21,9 @@ import { AgentListComponent } from './agent-list.component';
     MatPaginatorModule,
     CustomPipeModule,
     MatTabsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
   ]
 })
 export class AgentListModule { }
