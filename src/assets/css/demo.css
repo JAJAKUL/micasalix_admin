@@ -187,3 +187,6 @@
   outline: none;
   display: none;
 }
+.table-responsive {
+  overflow: auto !important;
+}
